@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DbRepository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DbRepository.Repositories
 {
-    public abstract class BaseRepository<TEntity> where TEntity : class
+    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
         protected readonly DataContext _context;
 
