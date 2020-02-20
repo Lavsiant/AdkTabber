@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdkTabber", "AdkTabber\AdkTabber.csproj", "{AB42EACB-3EC5-48A6-9EAF-BD773A426FB8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbRepository", "DbRepository\DbRepository.csproj", "{9D5C3743-DB0B-4BF0-8DFB-C09EB7E77F8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{63498530-0E40-42BD-A7D6-012C1545AEB5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB42EACB-3EC5-48A6-9EAF-BD773A426FB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB42EACB-3EC5-48A6-9EAF-BD773A426FB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB42EACB-3EC5-48A6-9EAF-BD773A426FB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB42EACB-3EC5-48A6-9EAF-BD773A426FB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D5C3743-DB0B-4BF0-8DFB-C09EB7E77F8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D5C3743-DB0B-4BF0-8DFB-C09EB7E77F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D5C3743-DB0B-4BF0-8DFB-C09EB7E77F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D5C3743-DB0B-4BF0-8DFB-C09EB7E77F8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63498530-0E40-42BD-A7D6-012C1545AEB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63498530-0E40-42BD-A7D6-012C1545AEB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63498530-0E40-42BD-A7D6-012C1545AEB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63498530-0E40-42BD-A7D6-012C1545AEB5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D0A35034-E20B-4F06-9348-ED4F0E44BCC5}
+	EndGlobalSection
+EndGlobal
