@@ -2,16 +2,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AdkTabber.AppStart;
+using AutoMapper;
 using DbRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Model.UserModel;
+using Services.Implementations;
+using Services.Interfaces;
 
 namespace AdkTabber
 {
@@ -33,6 +39,18 @@ namespace AdkTabber
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"),
                       b => b.MigrationsAssembly("DbRepository")));
+
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<DataContext>();
+
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });            
+            services.AddSingleton(mapperConfig.CreateMapper());
+
+            DIBuilder.ConfigureServices(services);
+            DIBuilder.ConfigureRepositories(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +66,7 @@ namespace AdkTabber
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

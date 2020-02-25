@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DbRepository.Repositories
 {
-    public class TabRepository : BaseRepository<Tab>, ITabRepository<Tab>
+    public class TabRepository : BaseRepository<Tab>, ITabRepository
     {
         public TabRepository(DataContext context) : base(context) { }
 

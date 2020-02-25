@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Model.TabModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Services.Interfaces
 {
-    class ITabService
+    public interface ITabService : IBaseEntityService<Tab>
     {
+
     }
 }
