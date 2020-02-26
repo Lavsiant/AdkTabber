@@ -1,6 +1,9 @@
-﻿using AdkTabber.ViewModels.AuthViewModels;
+﻿using AdkTabber.ViewModels;
+using AdkTabber.ViewModels.AuthViewModels;
 using AutoMapper;
+using Model.SongModel;
 using Model.UserModel;
+using Services.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +16,8 @@ namespace AdkTabber.AppStart
         public MappingProfile()
         {
             CreateMap<RegisterViewModel, User>();
+            CreateMap<SongCreateViewModel, SongDTO>();
+            CreateMap<SongDTO, Song>();
         }
     }
 }

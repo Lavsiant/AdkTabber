@@ -18,18 +18,17 @@ namespace Services.Models
                 errors = new[] { "An error occured" };
             }
             Succeeded = false;
-            Errors = errors;
+            Error = string.Join("\n", errors);
         }
 
         public ServiceResult(bool success)
         {
             Succeeded = success;
-            Errors = new string[0];
         }
 
         public bool Succeeded { get; set; }
 
-        public IEnumerable<string> Errors { get; set; }
+        public string Error { get; set; }
 
         public static ServiceResult Success { get; } = new ServiceResult(true);
 

@@ -1,6 +1,7 @@
 ﻿using DbRepository.Interfaces;
 using DbRepository.Repositories;
 using Services.Interfaces;
+using Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -17,39 +18,33 @@ namespace Services.Implementations
         {
             _baseEntityRepository = repository;
         }
-        public async Task CreateAsync(TEntity entity)
+
+        public async Task<ServiceResultWithModel<IEnumerable<TEntity>>> GetAllAsync()
         {
-            await _baseEntityRepository.AddAsync(entity);            
+            var entities = await _baseEntityRepository.GetAllAsync();
+            return ServiceResultWithModel<IEnumerable<TEntity>>.Success(entities);
         }
 
-        public async Task Create(IEnumerable<TEntity> entities)
+        public async Task<ServiceResultWithModel<TEntity>> GetByIdAsync(int id)
         {
-            await _baseEntityRepository.AddRangeAsync(entities);            
+            var entity = await _baseEntityRepository.GetByIdAsync(id);
+            if(entity == null)
+            {
+                return ServiceResultWithModel<TEntity>.Failed("Not found with specific id");
+            }
+            return ServiceResultWithModel<TEntity>.Success(entity);
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
-        {
-            return _baseEntityRepository.Find(predicate);
-        }
-
-        public async Task<IEnumerable<TEntity>> GetAllAsync()
-        {
-            return await _baseEntityRepository.GetAllAsync();            
-        }
-
-        public async Task<TEntity> GetByIdAsync(int id)
-        {
-            return await _baseEntityRepository.GetByIdAsync(id);            
-        }
-
-        public async Task Remove(TEntity entity)
+        public async Task<ServiceResult> Remove(TEntity entity)
         {
             await _baseEntityRepository.Remove(entity);
+            return ServiceResult.Success;
         }
 
-        public async Task RemoveRange(IEnumerable<TEntity> entities)
+        public async Task<ServiceResult> RemoveRange(IEnumerable<TEntity> entities)
         {
-            await _baseEntityRepository.RemoveRange(entities);            
+            await _baseEntityRepository.RemoveRange(entities);
+            return ServiceResult.Success;
         }
     }
 }

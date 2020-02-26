@@ -10,12 +10,13 @@ namespace Model.TabModel
     {
         [Key]
         public int ID { get; set; }
-        public string Name { get; set; }
 
-        public int Tempo { get; set; }
+        public string Name { get; set; }        
 
         [NotMapped]
         public TabType Type { get; set; }
+
+        public int SongID { get; set; }
     }
 }
     

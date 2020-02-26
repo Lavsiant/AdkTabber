@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Services.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
@@ -8,19 +9,13 @@ namespace Services.Interfaces
 {
     public interface IBaseEntityService<TEntity>
     {
-        Task CreateAsync(TEntity entity);
+        Task<ServiceResultWithModel<IEnumerable<TEntity>>> GetAllAsync();
 
-        Task Create(IEnumerable<TEntity> entities);
+        Task<ServiceResultWithModel<TEntity>> GetByIdAsync(int id);
 
-        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+        Task<ServiceResult> Remove(TEntity entity);
 
-        Task<IEnumerable<TEntity>> GetAllAsync();
-
-        Task<TEntity> GetByIdAsync(int id);
-
-        Task Remove(TEntity entity);
-
-        Task RemoveRange(IEnumerable<TEntity> entities);
+        Task<ServiceResult> RemoveRange(IEnumerable<TEntity> entities);
 
     }
 }

@@ -12,8 +12,7 @@ namespace Services.Models
 
         public ServiceResultWithModel(bool success, TModel model)
         {
-            Succeeded = success;
-            Errors = new string[0];
+            Succeeded = success;            
             Model = model;
         }
 
@@ -27,7 +26,7 @@ namespace Services.Models
             return new ServiceResultWithModel<TModel>()
             {
                 Succeeded = false,
-                Errors = errors
+                Error = string.Join('\n', errors);
             };
         }
     }

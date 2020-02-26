@@ -10,8 +10,6 @@ namespace Model.Interfaces
 
         int ID { get; set; }
 
-        string Name { get; set; }
-
-        int Tempo { get; set; }
+        string Name { get; set; }        
     }
 }
