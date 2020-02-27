@@ -26,6 +26,17 @@ namespace Services.Implementations
             {
                 return ServiceResult.Failed("Song with specific id not found");
             }
+            tabs.ForEach(x => x.SongID = songId);
+
+            try
+            {
+                await _baseEntityRepository.AddRangeAsync(tabs);
+                return ServiceResult.Success;
+            }
+            catch(Exception e)
+            {
+                return ServiceResult.Failed(e.Message);
+            }
 
         }
 

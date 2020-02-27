@@ -7,6 +7,7 @@ namespace Model.TabModel
     public enum TabType
     {
         Guitar,
-        Drums
+        Drums,
+        Piano
     }
 }

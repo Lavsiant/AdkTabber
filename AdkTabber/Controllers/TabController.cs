@@ -39,7 +39,14 @@ namespace AdkTabber.Controllers
         [Route("create")]
         public async Task<ActionResult> CreateTabs(TabsCreateViewModel model)
         {
-            var result = 
+            var tabs = model.GuitarTabs.Cast<Tab>().ToList();
+            tabs.AddRange(model.DrumTabs.Cast<Tab>());
+            var result = await _tabService.CreateTabs(tabs, model.SongId);
+            if (result.Succeeded)
+            {
+                return Ok();
+            }
+            return BadRequest(result.Error);
         }
 
     }

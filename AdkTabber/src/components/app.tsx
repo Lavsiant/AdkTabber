@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Header from './header/header';
+// import Header from './header/header';
 import Routing from '../routes/route';
 import { History } from 'history';
 import { ConnectedRouter } from 'connected-react-router'
@@ -17,7 +17,7 @@ export default class App extends React.Component<Props> {
         return (
             <ConnectedRouter history={this.props.history}>
                 <div>
-                    <Header />
+                  
                     <Routing />
                 </div>
             </ConnectedRouter>
