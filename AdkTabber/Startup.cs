@@ -34,7 +34,7 @@ namespace AdkTabber
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
+            services.AddMvc();
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"),
@@ -64,14 +64,20 @@ namespace AdkTabber
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseStaticFiles();
             app.UseAuthorization();
             app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();                
+                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                   name: "default",
+                   pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapFallbackToController("Index", "Home");
             });
+
+    
         }
     }
 }

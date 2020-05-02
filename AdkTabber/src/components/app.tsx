@@ -2,6 +2,7 @@ import * as React from 'react';
 // import Header from './header/header';
 import Routing from '../routes/route';
 import { History } from 'history';
+import  Header  from './header/header';
 import { ConnectedRouter } from 'connected-react-router'
 
 interface Props{
@@ -17,7 +18,7 @@ export default class App extends React.Component<Props> {
         return (
             <ConnectedRouter history={this.props.history}>
                 <div>
-                  
+                    <Header />
                     <Routing />
                 </div>
             </ConnectedRouter>

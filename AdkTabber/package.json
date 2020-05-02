@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.tsx",
   "scripts": {
-    "webpack-script": "webpack"
+    "build": "webpack",
+    "watch": "webpack -w"
   },
   "keywords": [],
   "author": "",

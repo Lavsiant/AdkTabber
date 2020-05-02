@@ -35,6 +35,10 @@ namespace AdkTabber.Controllers
             return BadRequest("Incorrect username or password");
         }
 
+
+
+        [HttpPost]
+        [Route("signup")]
         public async Task<ActionResult<User>> SignUp(RegisterViewModel model)
         {
             var result = await _userManager.CreateAsync(_mapper.Map<User>(model), model.Password);
@@ -42,7 +46,23 @@ namespace AdkTabber.Controllers
             {
                 return await _userManager.FindByNameAsync(model.Username);
             }
-            return BadRequest(string.Join("\n", result.Errors));
+            return BadRequest(string.Join("\n", result.Errors.Select(x=>x.Description)));
+        }
+
+
+        [HttpGet]
+        [Route("current")]
+        public async Task<ActionResult<User>> GetCurrentUser()
+        {
+            try
+            {
+                var result = await _userManager.GetUserAsync(HttpContext.User);
+                return result;
+            }
+            catch
+            {
+                return BadRequest("Cannot get current user");
+            }                     
         }
 
         public async Task<ActionResult> SignOut()
