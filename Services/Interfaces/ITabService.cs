@@ -10,5 +10,7 @@ namespace Services.Interfaces
     public interface ITabService : IBaseEntityService<Tab>
     {
         Task<ServiceResult> CreateTabs(List<Tab> tabs, int songId);
+
+        Task<ServiceResultWithModel<Tab>> GetFullTabById(int id);
     }
 }

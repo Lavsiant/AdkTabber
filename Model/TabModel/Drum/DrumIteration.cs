@@ -10,5 +10,6 @@ namespace Model.TabModel
         [Key]
         public int ID { get; set; }
         public List<DrumNote> Drums { get; set; }
+        public int TimeScale { get; set; }
     }
 }

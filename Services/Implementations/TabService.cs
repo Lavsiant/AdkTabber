@@ -37,7 +37,23 @@ namespace Services.Implementations
             {
                 return ServiceResult.Failed(e.Message);
             }
+        }
 
+        public async Task<ServiceResultWithModel<Tab>> GetFullTabById(int id)
+        {
+            try
+            {
+                var tab = await _baseEntityRepository.GetConcreteFullTab(id);
+                return new ServiceResultWithModel<Tab>()
+                {
+                    Model = tab,
+                    Succeeded = true,
+                };
+            }
+            catch(Exception e)
+            {
+                return ServiceResultWithModel<Tab>.Failed(e.Message);
+            }           
         }
 
     }

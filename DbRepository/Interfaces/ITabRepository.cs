@@ -10,6 +10,6 @@ namespace DbRepository.Interfaces
     {
         Task<List<Tab>> GetAllTabsByType(TabType type);
 
-        Task<T> GetConcreteTypeTab<T>(int id) where T : Tab;
+        Task<Tab> GetConcreteFullTab(int id);
     }
 }

@@ -4,14 +4,16 @@ using DbRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DbRepository.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200506221219_AddDifficultySong")]
+    partial class AddDifficultySong
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -174,29 +176,6 @@ namespace DbRepository.Migrations
                     b.ToTable("Songs");
                 });
 
-            modelBuilder.Entity("Model.TabModel.ConcreteNote", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Note")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Octave")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PianoIterationID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("PianoIterationID");
-
-                    b.ToTable("ConcreteNote");
-                });
-
             modelBuilder.Entity("Model.TabModel.DrumIteration", b =>
                 {
                     b.Property<int>("ID")
@@ -205,9 +184,6 @@ namespace DbRepository.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("DrumTabID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TimeScale")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -247,9 +223,6 @@ namespace DbRepository.Migrations
                     b.Property<int?>("GuitarTabID")
                         .HasColumnType("int");
 
-                    b.Property<int>("TimeScale")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
 
                     b.HasIndex("GuitarTabID");
@@ -278,26 +251,6 @@ namespace DbRepository.Migrations
                     b.HasIndex("GuitarIterationID");
 
                     b.ToTable("GuitarNote");
-                });
-
-            modelBuilder.Entity("Model.TabModel.PianoIteration", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("PianoTabID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TimeScale")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("PianoTabID");
-
-                    b.ToTable("PianoIteration");
                 });
 
             modelBuilder.Entity("Model.TabModel.Tab", b =>
@@ -405,13 +358,6 @@ namespace DbRepository.Migrations
                     b.HasDiscriminator().HasValue("GuitarTab");
                 });
 
-            modelBuilder.Entity("Model.TabModel.PianoTab", b =>
-                {
-                    b.HasBaseType("Model.TabModel.Tab");
-
-                    b.HasDiscriminator().HasValue("PianoTab");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -463,13 +409,6 @@ namespace DbRepository.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Model.TabModel.ConcreteNote", b =>
-                {
-                    b.HasOne("Model.TabModel.PianoIteration", null)
-                        .WithMany("Notes")
-                        .HasForeignKey("PianoIterationID");
-                });
-
             modelBuilder.Entity("Model.TabModel.DrumIteration", b =>
                 {
                     b.HasOne("Model.TabModel.DrumTab", null)
@@ -496,13 +435,6 @@ namespace DbRepository.Migrations
                     b.HasOne("Model.TabModel.GuitarIteration", null)
                         .WithMany("Notes")
                         .HasForeignKey("GuitarIterationID");
-                });
-
-            modelBuilder.Entity("Model.TabModel.PianoIteration", b =>
-                {
-                    b.HasOne("Model.TabModel.PianoTab", null)
-                        .WithMany("Iterations")
-                        .HasForeignKey("PianoTabID");
                 });
 
             modelBuilder.Entity("Model.TabModel.Tab", b =>

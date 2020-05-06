@@ -17,6 +17,8 @@ namespace Model.SongModel
 
         public int Tempo { get; set; }
 
+        public DifficultyType Difficulty { get; set; }
+
         public List<Tab> Tabs { get; set; }
     }
 }

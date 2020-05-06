@@ -25,6 +25,8 @@ namespace DbRepository
 
         public DbSet<GuitarTab> GuitarTabs { get; set; }
 
+        public DbSet<PianoTab> PianoTabs { get; set; }
+
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    optionsBuilder.UseSqlServer("Data Source=R9ETEM7\\\\SQLEXPRESS;Initial Catalog=AdkTabber;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");

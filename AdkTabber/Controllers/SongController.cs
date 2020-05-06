@@ -35,6 +35,18 @@ namespace AdkTabber.Controllers
             return BadRequest(result.Model);
         }
 
+        [HttpGet]
+        [Route("all")]
+        public async Task<ActionResult<List<Song>>> GetAllSongs()
+        {
+            var result = await _songService.GetAllAsync();
+            if (result.Succeeded)
+            {
+                return result.Model.ToList();
+            }
+            return BadRequest(result.Model);
+        }
+
         [HttpPost]
         [Route("сreate")]
         public async Task<ActionResult<Song>> CreateSong(SongCreateViewModel model)

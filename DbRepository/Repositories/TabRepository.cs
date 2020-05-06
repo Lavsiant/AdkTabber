@@ -23,9 +23,16 @@ namespace DbRepository.Repositories
             };
         }
 
-        public async Task<T> GetConcreteTypeTab<T>(int id) where T : Tab
+        public async Task<Tab> GetConcreteFullTab(int id) 
         {
-            return await _context.Tabs.FirstOrDefaultAsync(x => x.ID == id) is T tab ? tab : null;
+            var tab = _context.Tabs.First(x => x.ID == id);
+            return tab.Type switch
+            {
+                TabType.Guitar => await _context.GuitarTabs.Include(x=>x.Iterations).FirstOrDefaultAsync(x=>x.ID==id),
+                TabType.Drums => await _context.DrumTabs.Include(x => x.Iterations).FirstOrDefaultAsync(x => x.ID == id),
+                TabType.Piano => await _context.PianoTabs.Include(x => x.Iterations).FirstOrDefaultAsync(x => x.ID == id),
+                _ => await _context.Tabs.FirstOrDefaultAsync(x => x.ID == id),
+            };          
         }
 
     }

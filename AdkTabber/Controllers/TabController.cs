@@ -27,12 +27,44 @@ namespace AdkTabber.Controllers
         [Route("get")]
         public async Task<ActionResult<Tab>> GetTabById(int id)
         {
-            var result = await _tabService.GetByIdAsync(id);
+            var result = await _tabService.GetFullTabById(id);
             if (result.Succeeded)
             {
-                return result.Model;
+                return result.Model.Type switch
+                {
+                    TabType.Guitar => (GuitarTab)result.Model,
+                    TabType.Drums => (DrumTab)result.Model,
+                    TabType.Piano => (PianoTab)result.Model,
+                    _ => result.Model,
+                };
+               
             }
             return BadRequest("Tab not found");
+        }
+
+        //[HttpGet]
+        //[Route("full")]
+        //public async Task<ActionResult<Tab>> GetFullTabById(int id)
+        //{
+        //    var result = await _tabService.GetFullTabById(id);
+        //    if (result.Succeeded)
+        //    {
+        //        return result.Model;
+        //    }
+        //    return BadRequest("Tab not found");
+        //}
+
+
+        [HttpGet]
+        [Route("all")]
+        public async Task<ActionResult<List<Tab>>> GetAllTabs()
+        {
+            var result = await _tabService.GetAllAsync();
+            if (result.Succeeded)
+            {
+                return result.Model.ToList();
+            }
+            return BadRequest("Tabs not found");
         }
 
         [HttpPost]
